@@ -1,86 +1,8 @@
 <?
 namespace controller;
+use components\ArticleComponent;
 use core\View;
 use core\SqlBuilder;
- 
-
-class Component  extends FrontController  
-{
-	protected static $table;
-
-
-	public function add($value='')
-	{
-		 echo 'add to '. static::$table;
-	}
-
-	public function delete($id)
-	{
-		 
-	}
-
-	public function edite($id)
-	{
-		 
-	}
-
-	public function get($sql, $data = [])
-	{
-		$sql = $this->db->prepare($sql); 
-
-		if (!empty($data)) {
-			 
-
-			$sql->execute($data);
-		}else{
-
-			$sql->execute();
-		}
-		
-		$res = $sql->FetchAll();
-
-		return $res;
-		
-	}
-	 
-	
-
-}
-
- 
-class ArticleComponent extends  Component
-{	
-	protected static $table = 'articles' ;
-		
-	public $id;
-	public $title;
-	public $titleUrl;
-
-	private $type;
-
-	 public function list()
-	 {
-	 	$this->type = 'list'; 
-	 }
-
-	 public function detail()
-	 {
-	 	 $this->type = 'detail';
-	 }
- 		
-	  public function getView($view_page,callable $callable)
-	  {
-	  	 
-	  	$this->view->arResult =  $callable();
-	  	$this->view->view_page = $this->view->render('blog/articles/'.$view_page.'/'.$this->type);
-	  	
- 
-	  } 
-
-	  
-
-}
-
 
 class ArticleController extends FrontController   
 {
@@ -95,7 +17,7 @@ class ArticleController extends FrontController
  		$article->list();
  		$article->getView('index',function() use ($article,$SqlBuilder){
  			
-			   $sql =  $SqlBuilder->select()->FROM('articles')->orderBy('id','DESC')->get();
+			    $sql =  $SqlBuilder->select()->FROM('articles')->orderBy('id','DESC')->limit(2)->get();
 				
 				 return   $article->get($sql);
  	 
@@ -123,13 +45,28 @@ class ArticleController extends FrontController
 		$this->template('blog');
 	}
 
-	public function actionAdd($value='')
+	public function actionAdd()
 	{		
+ 
+		$article = new ArticleComponent;
 
+		$article->title = 'sfasf';
+		$article->anons = 'sfasf';
+		$article->content = 'sfasf';
+		$article->subtitle = 'sfasf';
 		 
+		$article->add();
+		 
+	}
 
+	public function actionEdite()
+	{
 
-		 $this->template('admin');
+	}
+
+	public function actionDelete()
+	{
+		 
 	}
 	 
 }

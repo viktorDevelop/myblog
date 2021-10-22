@@ -54,6 +54,14 @@ class SqlBuilder
 	 	$this->sql .= ' WHERE '. $column .'= :'.$column ;
 	 	return $this;
 	 }
+
+	 public function limit($limit = 10, $offset = 0)
+	 {
+	 	// code...
+
+	 	$this->sql .= ' LIMIT '.$limit.' OFFSET '.$offset; 
+	 	return $this;
+	 }
  
 	
 	public function insert()

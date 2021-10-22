@@ -1,9 +1,9 @@
 <?
 namespace controller;
-use \PDO;
+
 use core\View;
-
-
+use components\MenuComponent;
+use core\DataBase;
 class FrontController    
 {
 	
@@ -12,16 +12,16 @@ class FrontController
 
 	function __construct()
 	{
-		 $this->db  = new PDO('mysql:dbname=myDb;host=db','user','test');
+		 $this->db  = DataBase::getInstance()->getConnect();
 		 $this->view = View::getInstance();
-		 $this->view->menu = 'menu';
+		 
 	}
-
 
 	public function template($template)
 	{
 		 
-
+		$this->view->menu =  new MenuComponent();
+	
 		$this->view->render($template,true);
 	}
 	  
