@@ -27,6 +27,6 @@ Route::get('/category/',['controller'=>'Category']);
 Route::get('/category/(?P<id>[a-z0-9-]+)',['controller'=>'Category','action'=>'ListArticlesByCategory']);
 // детальная статьи
 Route::get('/article/(?P<id>[a-z0-9-]+)',['controller'=>'Article','action'=>'DetailById']);
-
+ 
 Route::get('/admin/article/add',['controller'=>'Article','action'=>'Add']);
 
