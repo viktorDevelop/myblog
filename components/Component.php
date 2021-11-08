@@ -34,7 +34,7 @@ class Component  extends FrontController
 			 
 			 
 
-			 $sql = "INSERT INTO  ". static::$table . "
+			  $sql = "INSERT INTO  ". static::$table . "
 			 				 (". implode(',', $cols).")
 			 				 VALUES 
 			 				 (".implode(',', $ins).")"; 

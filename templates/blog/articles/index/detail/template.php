@@ -12,3 +12,15 @@ echo "<pre>";
 	}
 
 ?>
+
+<script >
+	
+	 
+
+
+	 $(document).ready(function(){
+
+
+	 	 	 
+	 });
+</script>
